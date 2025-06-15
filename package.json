@@ -3,14 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=21.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
-    "dev": "vite",
+   "dev": "vite --open",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint ./src --fix -f mo && tsc --noemit",
     "preview": "vite preview",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noemit"
   },
   "dependencies": {
     "react": "^19.1.0",
