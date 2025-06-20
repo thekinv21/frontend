@@ -1,0 +1,3 @@
+import { APP_MODE, DEV_API_BASE_URL, PROD_API_BASE_URL } from './env.config'
+
+export { APP_MODE, DEV_API_BASE_URL, PROD_API_BASE_URL }

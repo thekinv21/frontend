@@ -4,10 +4,11 @@ import { scan } from 'react-scan'
 
 import './index.css'
 
+import { APP_MODE } from './config'
 import { Providers } from './providers/index'
 
 scan({
-  enabled: true
+  enabled: APP_MODE === 'development'
 })
 
 createRoot(document.getElementById('root')!).render(
