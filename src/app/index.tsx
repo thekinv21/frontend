@@ -4,7 +4,8 @@ import { scan } from 'react-scan'
 
 import './index.css'
 
-import { APP_MODE } from './config'
+import { APP_MODE } from '@/shared/config'
+
 import { Providers } from './providers/index'
 
 scan({
