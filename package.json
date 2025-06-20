@@ -10,7 +10,7 @@
   "scripts": {
    "dev": "vite --open",
     "build": "tsc -b && vite build",
-    "lint": "eslint ./src --fix -f mo && tsc --noemit",
+    "lint": "eslint ./src --fix -f stylish && tsc --noemit",
     "preview": "vite preview",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
