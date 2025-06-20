@@ -8,7 +8,7 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-   "dev": "vite --open",
+    "dev": "vite --open",
     "build": "tsc -b && vite build",
     "lint": "eslint ./src --fix -f stylish && tsc --noemit",
     "preview": "vite preview",
@@ -18,9 +18,16 @@
     "typecheck": "tsc --noemit"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.80.10",
+    "axios": "^1.10.0",
+    "date-fns": "^4.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-scan": "^0.3.4"
+    "react-hook-form": "^7.58.1",
+    "react-router-dom": "^7.6.2",
+    "react-scan": "^0.3.4",
+    "sonner": "^2.0.5",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
