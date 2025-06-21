@@ -13,7 +13,10 @@
     "preview": "vite preview",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
-    "lint": "eslint --ext .ts,.tsx ./src"
+    "lint": "eslint --ext .ts,.tsx ./src",
+    "lint:fix": "eslint --ext .ts,.tsx ./src --fix",
+    "lint:format": "npm run lint:fix && npm run format",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.80.10",
@@ -59,8 +62,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "eslint --fix"
     ]
   }
 }
