@@ -1,0 +1,35 @@
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+
+valid_types="feat|fix|refactor|chore|docs|style|test|perf|build|ci|revert|breaking"
+
+if ! echo "$commit_msg" | grep -Eq "^($valid_types): \[[^]]+\]\[[^]]+\]: .+"; then
+  echo "❌ Invalid commit message format!"
+  echo ""
+  echo "✅ Expected format: type: [branch_name][author_fullName]: Description of what you did"
+  echo ""
+  echo "🔑 Allowed types and their meanings:"
+  echo ""
+  echo "  - feat:     A new feature is introduced"
+  echo "  - fix:       A bug is fixed"
+  echo "  - refactor: Code is restructured without changing behavior"
+  echo "  - chore:    Maintenance tasks (dependencies, configs, etc.)"
+  echo "  - docs:     Documentation changes only"
+  echo "  - style:    Code style changes (formatting, whitespace, etc.)"
+  echo "  - test:     Adding or updating tests"
+  echo "  - perf:     Performance improvements"
+  echo "  - build:    Changes related to the build system or dependencies"
+  echo "  - ci:       Changes to CI/CD configurations"
+  echo "  - revert:   Reverting a previous commit"
+  echo "  - breaking: Backward-incompatible changes"
+  echo ""
+  echo "📌 Examples of valid commit messages:"
+  echo ""
+  echo "  feat: [master][Vadim Kiniabaev]: Add user profile page"
+  echo "  fix: [dev][Erkan Yenier]: Fix login redirect bug"
+  echo "  chore: [release][Münevver Özhan]: Update project dependencies"
+  echo "  breaking: [master][Muhlis Murat Akay]: Remove legacy authentication endpoint"
+  echo ""
+  exit 1
+fi
