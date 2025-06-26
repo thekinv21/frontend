@@ -182,15 +182,14 @@ app → pages → widgets → features → entities → shared
 
 ## 🧾 Layer Access Rules
 
-| Layer       | Can access                                  |
-| ----------- | ------------------------------------------- |
-| `app`       | all layers                                  |
-| `pages`     | `widgets`, `features`, `entities`, `shared` |
-| `processes` | `features`, `entities`, `shared`            |
-| `widgets`   | `features`, `entities`, `shared`            |
-| `features`  | `entities`, `shared`                        |
-| `entities`  | `shared`                                    |
-| `shared`    | no other dependencies                       |
+| Layer      | Can access                                  |
+| ---------- | ------------------------------------------- |
+| `app`      | all layers                                  |
+| `entities` | `shared`                                    |
+| `features` | `entities`, `shared`                        |
+| `pages`    | `widgets`, `features`, `entities`, `shared` |
+| `shared`   | no other dependencies                       |
+| `widgets`  | `features`, `entities`, `shared`            |
 
 ---
 
