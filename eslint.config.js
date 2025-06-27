@@ -1,151 +1,112 @@
-import js from '@eslint/js'
-import prettierConfig from 'eslint-config-prettier'
-import importPlugin from 'eslint-plugin-import'
-import jsxA11y from 'eslint-plugin-jsx-a11y'
-import prettier from 'eslint-plugin-prettier'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import eslintPluginReactModern from '@eslint-react/eslint-plugin'
+import eslintPluginJs from '@eslint/js'
+import eslintPluginQuery from '@tanstack/eslint-plugin-query'
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
+import { projectStructurePlugin } from 'eslint-plugin-project-structure'
+import eslintPluginReact from 'eslint-plugin-react'
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginNamingConvention from 'eslint-plugin-react-naming-convention'
 import globals from 'globals'
-import * as tseslint from 'typescript-eslint'
+import eslintTypescript from 'typescript-eslint'
 
-export default tseslint.config(
+import { independentModulesConfig } from './independentModules.mjs'
+
+export default eslintTypescript.config(
+  eslintPluginJs.configs.recommended,
+  eslintTypescript.configs.recommended,
+  eslintPluginJsxA11y.flatConfigs.strict,
+  eslintPluginReact.configs.flat.recommended,
+  eslintPluginNamingConvention.configs.recommended,
+  eslintPluginReactModern.configs['recommended-type-checked'],
+  eslintPluginReactHooks.configs['recommended-latest'],
+  ...eslintPluginQuery.configs['flat/recommended'],
+  { ignores: ['**/vite-env.d.ts'] },
   {
-    ignores: ['dist', 'node_modules', '*.config.js', '*.config.ts', '**/*.d.ts']
+    languageOptions: {
+      globals: { ...globals.browser },
+      parser: eslintTypescript.parser,
+      parserOptions: {
+        projectService: true,
+        warnOnUnsupportedTypeScriptVersion: false
+      }
+    }
   },
   {
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      prettierConfig
-    ],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true
-        },
-        project: './tsconfig.app.json',
-        tsconfigRootDir: import.meta.dirname
-      }
-    },
-    plugins: {
-      react: react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'jsx-a11y': jsxA11y,
-      import: importPlugin,
-      prettier: prettier
-    },
-    settings: {
-      react: {
-        version: 'detect'
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.app.json'
-        }
-      }
-    },
     rules: {
-      /**
-       * Prettier
-       */
-      'prettier/prettier': 'error',
-
-      /**
-       * React Refresh
-       */
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true }
-      ],
-
-      /**
-       * React Rules
-       */
-      'react/jsx-uses-react': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'react/jsx-props-no-spreading': 'warn',
-      'react/jsx-no-useless-fragment': 'warn',
-      'react/jsx-key': 'error',
-      'react/jsx-no-duplicate-props': 'error',
-      'react/jsx-no-undef': 'error',
-      'react/no-array-index-key': 'warn',
-      'react/no-danger': 'warn',
-      'react/no-deprecated': 'error',
-      'react/no-direct-mutation-state': 'error',
-      'react/no-find-dom-node': 'error',
-      'react/no-is-mounted': 'error',
-      'react/no-render-return-value': 'error',
-      'react/no-string-refs': 'error',
-      'react/no-unescaped-entities': 'warn',
-      'react/no-unknown-property': 'error',
-      'react/no-unsafe': 'warn',
-      'react/self-closing-comp': 'warn',
-      'react/sort-comp': 'warn',
-
-      /**
-       * React Hooks Rules
-       */
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-
-      /**
-       * Accessibility Rules
-       */
-      'jsx-a11y/alt-text': 'warn',
-      'jsx-a11y/anchor-has-content': 'warn',
-      'jsx-a11y/anchor-is-valid': 'warn',
-      'jsx-a11y/aria-props': 'warn',
-      'jsx-a11y/aria-proptypes': 'warn',
-      'jsx-a11y/aria-unsupported-elements': 'warn',
-      'jsx-a11y/role-has-required-aria-props': 'warn',
-      'jsx-a11y/role-supports-aria-props': 'warn',
-
-      /**
-       * Import Rules
-       */
-      'import/no-unused-modules': 'error',
-
-      /**
-       * TypeScript Rules
-       */
-
-      '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unused-vars': [
+      'no-restricted-syntax': [
         'error',
         {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_'
+          selector:
+            "ImportDeclaration[source.value='react'] :matches(ImportDefaultSpecifier, ImportNamespaceSpecifier)",
+          message: 'Default React import is not allowed'
+        },
+        {
+          selector: 'Identifier[name="React"]',
+          message: 'Prefix React is not allowed'
         }
       ],
-      '@typescript-eslint/no-empty-object-type': 'error',
-      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
-      '@typescript-eslint/prefer-optional-chain': 'warn',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/await-thenable': 'warn',
-      '@typescript-eslint/no-misused-promises': 'warn',
-      '@typescript-eslint/require-await': 'warn',
-      '@typescript-eslint/return-await': 'warn',
-      '@typescript-eslint/no-unsafe-call': 'warn',
-      '@typescript-eslint/no-unsafe-member-access': 'warn',
-      '@typescript-eslint/no-unsafe-return': 'warn',
-
-      // General Rules
-      'no-console': 'warn',
-      'no-debugger': 'error',
-      'no-alert': 'warn',
-      'no-var': 'error',
-      'prefer-const': 'error',
-      'no-unused-expressions': 'error',
-      'no-duplicate-imports': 'error'
+      'newline-before-return': 'error',
+      'arrow-body-style': ['warn', 'as-needed']
+    }
+  },
+  {
+    rules: {
+      'jsx-a11y/no-autofocus': 'off',
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/no-import-type-side-effects': 'error',
+      '@typescript-eslint/consistent-indexed-object-style': 'error',
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      '@typescript-eslint/array-type': ['error', { default: 'array' }],
+      '@typescript-eslint/naming-convention': [
+        'error',
+        { selector: 'typeLike', format: ['PascalCase'] }
+      ],
+      '@typescript-eslint/no-restricted-types': [
+        'error',
+        {
+          types: {
+            FC: 'Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177'
+          }
+        }
+      ]
+    }
+  },
+  {
+    files: ['**/ambient/*.d.ts'],
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': 'off'
+    }
+  },
+  {
+    rules: {
+      'react/react-in-jsx-scope': 'off',
+      'react/display-name': 'off',
+      'react/jsx-no-useless-fragment': 'error',
+      'react/boolean-prop-naming': [
+        'error',
+        {
+          rule: '^(is|as|has|should|can|enable)[A-Z]([A-Za-z0-9]?)+',
+          validateNested: true
+        }
+      ],
+      'react/destructuring-assignment': [
+        'warn',
+        'always',
+        { destructureInSignature: 'always' }
+      ],
+      'react/jsx-curly-brace-presence': [
+        'error',
+        { props: 'never', children: 'never' }
+      ]
+    }
+  },
+  {
+    plugins: { 'project-structure': projectStructurePlugin },
+    rules: {
+      'project-structure/independent-modules': [
+        'error',
+        independentModulesConfig
+      ]
     }
   }
 )
