@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import type { ReactNode } from 'react'
+
+import { useState } from 'react'
 
 import {
   QueryClient,
@@ -6,18 +8,19 @@ import {
 } from '@tanstack/react-query'
 
 type TypeQueryClientProvider = {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const QueryClientProvider = ({ children }: TypeQueryClientProvider) => {
   const [queryClient] = useState(
-    new QueryClient({
-      defaultOptions: {
-        queries: {
-          refetchOnWindowFocus: false
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false
+          }
         }
-      }
-    })
+      })
   )
 
   return (
