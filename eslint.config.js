@@ -79,9 +79,10 @@ export default eslintTypescript.config(
   },
   {
     rules: {
+       "newline-before-return": "off",
       'react/react-in-jsx-scope': 'off',
       'react/display-name': 'off',
-      'react/jsx-no-useless-fragment': 'error',
+      'react/jsx-no-useless-fragment': 'off',
       'react/boolean-prop-naming': [
         'error',
         {
