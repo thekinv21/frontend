@@ -7,11 +7,11 @@ import {
   QueryClientProvider as TanStackQueryClientProvider
 } from '@tanstack/react-query'
 
-type TypeQueryClientProvider = {
+type QueryClientProviderProps = {
   children: ReactNode
 }
 
-export const QueryClientProvider = ({ children }: TypeQueryClientProvider) => {
+export const QueryClientProvider = ({ children }: QueryClientProviderProps) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
