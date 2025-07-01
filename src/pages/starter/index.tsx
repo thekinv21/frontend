@@ -1,5 +1,7 @@
-import { Starter } from './Starter'
+import { WelcomePage } from './WelcomePage'
 
 export function StarterPage() {
-  return <Starter />
+  return <WelcomePage />
 }
+
+export { WelcomePage } from './WelcomePage'
