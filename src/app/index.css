@@ -1,6 +1,16 @@
+/* ==========================================================================
+   GLOBAL STYLES AND IMPORTS
+   ========================================================================== */
+
+/* Import Tailwind CSS and animation utilities */
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* ==========================================================================
+   FONT FACE DEFINITIONS
+   ========================================================================== */
+
+/* Poppins Regular (400) - Primary font weight for body text */
 @font-face {
   font-family: 'Poppins';
   src:
@@ -11,6 +21,7 @@
   font-display: swap;
 }
 
+/* Poppins Medium (500) - Secondary font weight for emphasis */
 @font-face {
   font-family: 'Poppins';
   src:
@@ -21,6 +32,7 @@
   font-display: swap;
 }
 
+/* Poppins SemiBold (600) - Tertiary font weight for headings */
 @font-face {
   font-family: 'Poppins';
   src:
@@ -31,6 +43,11 @@
   font-display: swap;
 }
 
+/* ==========================================================================
+   GLOBAL RESET AND BASE STYLES
+   ========================================================================== */
+
+/* CSS Reset - Remove default margins, padding, and set box-sizing */
 * {
   margin: 0;
   padding: 0;
@@ -38,81 +55,92 @@
   font-family: Poppins, sans-serif;
 }
 
+/* ==========================================================================
+   THEME CONFIGURATION
+   ========================================================================== */
+
 @theme inline {
+  /* Font Family Definitions */
   --font-*: initial;
   --font-poppins: 'Poppins', sans-serif;
 
+  /* Color Palette - Dark theme with brand colors */
   --color-*: initial;
-  --color-black: #161616;
-  --color-black-soft: #121212;
-  --color-black-muted: #1f1f1f;
-  --color-black-deep: #151515;
-  --color-black-overlay: #00000080;
-  --color-gray: #ecedfd66;
-  --color-gray-light: #e8e8e8;
-  --color-white: #ffffff;
-  --color-white-soft: #fcfcfc;
-  --color-white-muted: #f6f6f7;
-  --color-white-gray: #ecedfd;
-  --color-brand: #bedbb0;
-  --color-brand-light: #9dc888;
-  --color-brand-violet: #5255bc;
-  --color-brand-violet-light: #7b7ede;
-  --color-brand-violet-muted: #979cea;
-  --color-brand-violet-soft: #b8bcfd;
-  --color-blue: #8fa1d0;
-  --color-red: #dc2626;
-  --color-pink: #e09cb5;
+  --color-black: #161616; /* Primary black */
+  --color-black-soft: #121212; /* Soft black for backgrounds */
+  --color-black-muted: #1f1f1f; /* Muted black for subtle elements */
+  --color-black-deep: #151515; /* Deep black for overlays */
+  --color-black-overlay: #00000080; /* Semi-transparent black overlay */
+  --color-gray: #ecedfd66; /* Gray with transparency */
+  --color-gray-light: #e8e8e8; /* Light gray */
+  --color-white: #ffffff; /* Pure white */
+  --color-white-soft: #fcfcfc; /* Soft white for backgrounds */
+  --color-white-muted: #f6f6f7; /* Muted white */
+  --color-white-gray: #ecedfd; /* White-gray blend */
+  --color-brand: #bedbb0; /* Primary brand green */
+  --color-brand-light: #9dc888; /* Light brand green */
+  --color-brand-violet: #5255bc; /* Primary brand violet */
+  --color-brand-violet-light: #7b7ede; /* Light brand violet */
+  --color-brand-violet-muted: #979cea; /* Muted brand violet */
+  --color-brand-violet-soft: #b8bcfd; /* Soft brand violet */
+  --color-blue: #8fa1d0; /* Accent blue */
+  --color-red: #dc2626; /* Error/danger red */
+  --color-pink: #e09cb5; /* Accent pink */
 
+  /* Typography Scale - Responsive text sizes */
   --text-*: initial;
-  --text-xs: 8px;
+  --text-xs: 8px; /* Extra small text */
   --text-xs--line-height: normal;
   --text-xs--font-weight: 400;
   --text-xs--letter-spacing: -0.16px;
 
-  --text-sm: 10px;
+  --text-sm: 10px; /* Small text */
   --text-sm--line-height: normal;
   --text-sm--font-weight: 400;
   --text-sm--letter-spacing: -0.2px;
 
-  --text-md: 12px;
+  --text-md: 12px; /* Medium text */
   --text-md--line-height: normal;
   --text-md--letter-spacing: -0.24px;
 
-  --text-base: 14px;
+  --text-base: 14px; /* Base text size */
   --text-base--line-height: 1.28;
   --text-base--letter-spacing: -0.28px;
 
-  --text-lg: 16px;
+  --text-lg: 16px; /* Large text */
   --text-lg--line-height: normal;
   --text-lg--letter-spacing: -0.64px;
 
-  --text-xl: 18px;
+  --text-xl: 18px; /* Extra large text */
   --text-xl--line-height: normal;
   --text-xl--font-weight: 500;
   --text-xl--letter-spacing: -0.36px;
 
-  --text-2xl: 28px;
+  --text-2xl: 28px; /* 2X large text */
   --text-2xl--line-height: normal;
   --text-2xl--font-weight: 600;
   --text-2xl--letter-spacing: -1.12px;
 
-  --text-3xl: 40px;
+  --text-3xl: 40px; /* 3X large text */
   --text-3xl--line-height: normal;
   --text-3xl--font-weight: 600;
   --text-3xl--letter-spacing: -1.6px;
 
+  /* Breakpoint Definitions - Responsive design breakpoints */
   --breakpoint-*: initial;
-  --breakpoint-mobile: 375px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1440px;
+  --breakpoint-mobile: 375px; /* Mobile devices */
+  --breakpoint-tablet: 768px; /* Tablet devices */
+  --breakpoint-desktop: 1440px; /* Desktop devices */
 
-  --spacing-4_5: 18px;
-  --spacing-84: 335px;
+  /* Custom Spacing Values */
+  --spacing-4_5: 18px; /* Custom spacing value */
+  --spacing-84: 335px; /* Custom spacing value */
 
+  /* Shadow Definitions */
   --shadow-*: initial;
-  --shadow-main: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+  --shadow-main: 0px 4px 16px 0px rgba(17, 17, 17, 0.1); /* Main shadow */
 
+  /* Animation Definitions - Modal transitions */
   --animate-modal-in: modal-in 300ms ease 0s 1 normal none running;
   --animate-modal-out: modal-out 300ms ease 0s 1 normal none running;
   --animate-modal-overlay-in: modal-overlay-in 300ms ease 0s 1 normal none
@@ -120,6 +148,11 @@
   --animate-modal-overlay-out: modal-overlay-out 300ms ease 0s 1 normal none
     running;
 
+  /* ==========================================================================
+     KEYFRAME ANIMATIONS
+     ========================================================================== */
+
+  /* Modal overlay fade in animation */
   @keyframes modal-overlay-in {
     from {
       opacity: 0;
@@ -129,6 +162,7 @@
     }
   }
 
+  /* Modal overlay fade out animation */
   @keyframes modal-overlay-out {
     from {
       opacity: 1;
@@ -138,6 +172,7 @@
     }
   }
 
+  /* Modal content scale and fade in animation */
   @keyframes modal-in {
     from {
       scale: 0.96;
@@ -149,6 +184,7 @@
     }
   }
 
+  /* Modal content scale and fade out animation */
   @keyframes modal-out {
     from {
       scale: 100%;
@@ -161,17 +197,29 @@
   }
 }
 
+/* ==========================================================================
+   BASE LAYER STYLES
+   ========================================================================== */
+
 @layer base {
+  /* Ensure clickable elements show pointer cursor when enabled */
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
 }
 
+/* ==========================================================================
+   CUSTOM VARIANT DEFINITIONS
+   ========================================================================== */
+
+/* Dark theme variant */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Violet theme variant */
 @custom-variant violet (&:where(.violet, .violet *));
 
+/* Hover, focus, and active state variant */
 @custom-variant hocus {
   @media (hover: hover) {
     &:hover {
@@ -186,6 +234,11 @@
   }
 }
 
+/* ==========================================================================
+   CUSTOM UTILITIES
+   ========================================================================== */
+
+/* Responsive container utility with breakpoint variants */
 @utility container {
   padding-inline: 20px;
   margin-inline: auto;
@@ -202,10 +255,12 @@
   }
 }
 
+/* Text fill color utility for webkit compatibility */
 @utility text-fill-* {
   -webkit-text-fill-color: --value(--color-*);
 }
 
+/* Hide password toggle buttons in input fields */
 @utility hide-password-toggle {
   &::-ms-reveal,
   &::-ms-clear {
@@ -213,21 +268,51 @@
   }
 }
 
+/* Fade and zoom animation utility for modals and dialogs */
 @utility fade-zoom {
   @apply data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95;
 }
 
+/* Styled outline utility with theme variants */
 @utility styled-outline {
   @apply outline-brand violet:outline-brand-violet outline-2;
 }
 
+/* Soft green background with gradient utility */
 @utility bg-soft-green {
   @apply bg-brand bg-linear-180 from-white from-25% to-[92.19%];
 }
 
+/* ==========================================================================
+   MOBILE-SPECIFIC STYLES
+   ========================================================================== */
+
+/* Prevent zoom on input focus for iOS devices */
 @supports (-webkit-overflow-scrolling: touch) {
   input,
   textarea {
     font-size: 16px;
   }
+}
+
+/* ==========================================================================
+   CUSTOM ANIMATIONS
+   ========================================================================== */
+
+/* Custom spinning animation for loading indicators */
+@keyframes custom-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility class for custom spinning animation */
+.animate-custom-spin {
+  animation: custom-spin 1s infinite linear;
 }
