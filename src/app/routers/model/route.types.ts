@@ -1,10 +1,10 @@
+import type { AppLayout } from '@/shared/enum'
 import type { ReactNode } from 'react'
-import type { LayoutEnum } from '../enum/layout.enum'
 
-export type TypeRoute = {
+export type RouteType = {
   key: string
   path: string
   element: ReactNode
-  layout: LayoutEnum
-  hasAuthority?: string[]
+  layout: AppLayout
+  hasAuthority: string[]
 }
