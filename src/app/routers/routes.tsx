@@ -1,16 +1,16 @@
-import type { TypeRoute } from './model/route.types'
+import type { RouteType } from './model/route.types'
 
 import { StarterPage } from '@/pages/starter'
 
-import { LayoutEnum } from './enum/layout.enum'
+import { AppLayout } from '@/shared/enum'
 
 export const Routers = () => {
-  const routes: TypeRoute[] = [
+  const routes: RouteType[] = [
     {
       key: 'home',
       path: '/',
       element: <StarterPage />,
-      layout: LayoutEnum.DEFAULT,
+      layout: AppLayout.DEFAULT,
       hasAuthority: []
     }
   ]
